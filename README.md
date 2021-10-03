@@ -1,3 +1,3 @@
 # KDAP1
  
-Daha kullanıma hazır değil
+Henüz kullanıma hazır değil
