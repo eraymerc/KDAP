@@ -1,0 +1,2 @@
+go run -ldflags -H=windowsgui main.go
+fyne package -os windows -icon icon.png main.go
