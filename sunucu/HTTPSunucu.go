@@ -33,8 +33,17 @@ func (server *Server) handler(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func handlefunc() {
+	defer func() {
+		if r := recover(); r != nil {
+			return
+		}
+	}()
+	http.HandleFunc("/", server.handler)
+}
+
 func (server *Server) HTTPServer() {
 	//sunucu HTTP olarak başlatılıyor
-	http.HandleFunc("/", server.handler)
+	handlefunc()
 	http.Serve(server.listener, nil)
 }

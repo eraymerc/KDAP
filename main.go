@@ -1,7 +1,7 @@
 package main
 
 import (
-	Sunucu "KDAP1/sunucu"
+	Sunucu "KDAP/sunucu"
 	"os"
 	"strconv"
 
@@ -35,12 +35,16 @@ func sunucu() {
 	})
 
 	//ipList
-	ipList := container.NewHScroll(
+	ipList := widget.NewLabel("")
+	go ipList.SetText("Yerel Adresler:\n" + Sunucu.YerelIP() + "\nGenel Adres:\n\t" + Sunucu.GenelIP())
+
+	ipListCont := container.NewHScroll(
 		container.NewVScroll(
-			widget.NewLabel("Yerel Adresler:\n" + Sunucu.YerelIP() + "\nGenel Adres:\n\t" + Sunucu.GenelIP()),
+			ipList,
 		),
 	)
-	ipList.SetMinSize(fyne.NewSize(0, 300))
+	ipListCont.SetMinSize(fyne.NewSize(0, 300))
+
 	//konumlbl
 	konumlbl := widget.NewLabel("Dosya Seçilmedi!")
 
@@ -102,7 +106,7 @@ func sunucu() {
 
 				Sunucu.Baslat(fileName, portNum, sifre.Text, httpCheck.Checked, isKlasor)
 			}),
-			ipList,
+			ipListCont,
 		),
 	))
 	w.Resize(fyne.NewSize(600, 500))
@@ -144,7 +148,7 @@ func istemci() {
 
 func anasayfa() {
 
-	var w = a.NewWindow("KDAP1")
+	var w = a.NewWindow("KDAP")
 
 	//karanlık tema
 	a.Settings().SetTheme(theme.DarkTheme())

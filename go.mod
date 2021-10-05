@@ -1,4 +1,4 @@
-module KDAP1
+module KDAP
 
 go 1.17
 
